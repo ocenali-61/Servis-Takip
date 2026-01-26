@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servis Takip Sistemi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="manifest" href="manifest.json">
+</head>
+
+<body class="bg-gray-100 p-6">
+    <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+        <div class="p-8">
+            <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold mb-4">Öğrenci Servis Takip Sistemi
+            </div>
+            <div class="grid grid-cols-1 gap-4">
+                <a href="servisler.html"
+                    class="block p-4 bg-blue-500 text-white text-center rounded hover:bg-blue-600 transition">🚌
+                    Servisler</a>
+                <a href="ogrenciler.html"
+                    class="block p-4 bg-green-500 text-white text-center rounded hover:bg-green-600 transition">🎓
+                    Öğrenciler</a>
+                <a href="takip.html"
+                    class="block p-4 bg-purple-500 text-white text-center rounded hover:bg-purple-600 transition">📝
+                    Yoklama / Takip</a>
+                <a href="arsiv.html"
+                    class="block p-4 bg-gray-500 text-white text-center rounded hover:bg-gray-600 transition">📂
+                    Arşiv</a>
+                <a href="rapor.html"
+                    class="block p-4 bg-orange-500 text-white text-center rounded hover:bg-orange-600 transition">📊
+                    Raporlar</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+
+</html>
