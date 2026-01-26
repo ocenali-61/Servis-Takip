@@ -98,12 +98,20 @@ function renderArchive() {
     }
     
     // Add date headers in first row and sub-headers in second row
-    sortedDates.forEach(date => {
+    sortedDates.forEach((date, index) => {
+        // Determine border style - thick border between dates
+        const borderStyle = index > 0 ? 'border-l-4 border-gray-400' : '';
+        
         // Date header in first row with colspan=2
         const thDate = document.createElement('th');
         thDate.setAttribute('data-date', date);
         thDate.setAttribute('colspan', '2');
-        thDate.className = 'px-5 py-3 border-b border-gray-200 bg-purple-100 text-center text-xs font-semibold text-purple-700 uppercase tracking-wider';
+        thDate.className = `px-3 py-3 border-b border-gray-200 bg-purple-100 text-center text-xs font-semibold text-purple-700 uppercase tracking-wider ${borderStyle}`;
+        thDate.style.writingMode = 'vertical-rl';
+        thDate.style.transform = 'rotate(180deg)';
+        thDate.style.height = '120px';
+        thDate.style.paddingTop = '10px';
+        thDate.style.paddingBottom = '10px';
         thDate.textContent = date;
         firstRow.appendChild(thDate);
         
@@ -111,16 +119,16 @@ function renderArchive() {
         const thSabah = document.createElement('th');
         thSabah.setAttribute('data-date', date);
         thSabah.setAttribute('data-period', 'sabah');
-        thSabah.className = 'px-5 py-3 border-b-2 border-gray-200 bg-yellow-100 text-center text-xs font-semibold text-yellow-700 uppercase tracking-wider';
-        thSabah.innerHTML = '🌞 Sabah';
+        thSabah.className = `px-5 py-3 border-b-2 border-gray-200 bg-yellow-100 text-center text-lg font-semibold text-yellow-700 ${borderStyle}`;
+        thSabah.innerHTML = '🌞';
         secondRow.appendChild(thSabah);
         
         // Aksam sub-header in second row
         const thAksam = document.createElement('th');
         thAksam.setAttribute('data-date', date);
         thAksam.setAttribute('data-period', 'aksam');
-        thAksam.className = 'px-5 py-3 border-b-2 border-gray-200 bg-blue-100 text-center text-xs font-semibold text-blue-700 uppercase tracking-wider';
-        thAksam.innerHTML = '🌙 Akşam';
+        thAksam.className = `px-5 py-3 border-b-2 border-gray-200 bg-blue-100 text-center text-lg font-semibold text-blue-700 ${borderStyle}`;
+        thAksam.innerHTML = '🌙';
         secondRow.appendChild(thAksam);
     });
     
