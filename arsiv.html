@@ -36,18 +36,43 @@
             </div>
         </div>
 
-        <div class="bg-white shadow rounded-lg overflow-x-auto">
-            <table class="min-w-full leading-normal">
+        <style>
+            .archive-table-wrapper {
+                overflow-x: auto;
+            }
+            .archive-table {
+                border-collapse: collapse;
+            }
+            .archive-table thead th:nth-child(-n+3) {
+                position: sticky;
+                left: 0;
+                z-index: 10;
+            }
+            .archive-table tbody td:nth-child(-n+3) {
+                position: sticky;
+                left: 0;
+                z-index: 5;
+                background-color: white;
+            }
+            .archive-table thead {
+                position: sticky;
+                top: 0;
+                z-index: 11;
+            }
+        </style>
+
+        <div class="bg-white shadow rounded-lg archive-table-wrapper">
+            <table class="archive-table min-w-full leading-normal">
                 <thead>
                     <tr>
                         <th
-                            class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider sticky left-0 z-10">
                             Öğrenci Adı</th>
                         <th
-                            class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider sticky left-24 z-10">
                             Okul No</th>
                         <th
-                            class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider sticky left-40 z-10">
                             Sınıf</th>
                         <!-- Date headers will be added dynamically by JS -->
                     </tr>

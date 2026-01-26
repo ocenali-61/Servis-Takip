@@ -112,13 +112,13 @@ function renderArchive() {
         const attendances = studentAttendanceMap[studentId];
         
         let rowHtml = `
-            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm sticky left-0 z-5">
                 <p class="text-gray-900 font-semibold">${student.ad} ${student.soyad}</p>
             </td>
-            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm sticky left-24 z-5">
                 <p class="text-gray-900">${student.okulNo || '-'}</p>
             </td>
-            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm sticky left-40 z-5">
                 <span class="inline-block bg-blue-100 rounded px-2 py-1 text-xs font-semibold text-blue-900">${student.sinif}</span>
             </td>
         `;
