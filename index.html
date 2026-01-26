@@ -30,10 +30,21 @@
                 <a href="rapor.html"
                     class="block p-4 bg-orange-500 text-white text-center rounded hover:bg-orange-600 transition">📊
                     Raporlar</a>
+                <button onclick="clearAllData()"
+                    class="block w-full p-4 bg-red-500 text-white text-center rounded hover:bg-red-600 transition">🗑️
+                    Tüm Verileri Sil</button>
             </div>
         </div>
     </div>
     <script>
+        function clearAllData() {
+            if (confirm('Tüm verileri silmek istediğinize emin misiniz? Bu işlem geri alınamaz!')) {
+                localStorage.clear();
+                alert('Tüm veriler başarıyla silindi.');
+                location.reload();
+            }
+        }
+
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js');
         }
