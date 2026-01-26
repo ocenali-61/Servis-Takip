@@ -70,21 +70,30 @@ function renderArchive() {
         return;
     }
 
-    // Update table headers with dates
+    // Update table headers with dates and time periods
     const thead = document.querySelector('table thead tr');
-    const existingHeaders = thead.querySelectorAll('th').length;
     
     // Remove date headers if they exist
     const dateHeaders = thead.querySelectorAll('th[data-date]');
     dateHeaders.forEach(h => h.remove());
     
-    // Add date headers
+    // Add date headers with Sabah and Aksam sub-headers
     sortedDates.forEach(date => {
-        const th = document.createElement('th');
-        th.setAttribute('data-date', date);
-        th.className = 'px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider';
-        th.textContent = date;
-        thead.appendChild(th);
+        // Sabah header
+        const thSabah = document.createElement('th');
+        thSabah.setAttribute('data-date', date);
+        thSabah.setAttribute('data-period', 'sabah');
+        thSabah.className = 'px-5 py-3 border-b-2 border-gray-200 bg-yellow-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider';
+        thSabah.innerHTML = `<div>${date}</div><div class="text-yellow-700">🌞 Sabah</div>`;
+        thead.appendChild(thSabah);
+        
+        // Aksam header
+        const thAksam = document.createElement('th');
+        thAksam.setAttribute('data-date', date);
+        thAksam.setAttribute('data-period', 'aksam');
+        thAksam.className = 'px-5 py-3 border-b-2 border-gray-200 bg-blue-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider';
+        thAksam.innerHTML = `<div>${date}</div><div class="text-blue-700">🌙 Akşam</div>`;
+        thead.appendChild(thAksam);
     });
 
     // Sort students by name
@@ -117,18 +126,27 @@ function renderArchive() {
         // Add attendance for each date
         sortedDates.forEach(date => {
             const att = attendances[date];
+            
+            // Sabah column
             if (att) {
-                const sabahClass = att.sabah ? 'text-green-600' : 'text-red-600';
-                const aksamClass = att.aksam ? 'text-green-600' : 'text-red-600';
+                const sabahClass = att.sabah ? 'text-green-600 bg-green-50' : 'text-red-600 bg-red-50';
                 const sabahIcon = att.sabah ? '✔' : '✘';
-                const aksamIcon = att.aksam ? '✔' : '✘';
-                
                 rowHtml += `
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
-                        <div class="flex justify-center space-x-2">
-                            <span class="${sabahClass} font-bold">🌞${sabahIcon}</span>
-                            <span class="${aksamClass} font-bold">🌙${aksamIcon}</span>
-                        </div>
+                    <td class="px-5 py-5 border-b border-gray-200 text-sm text-center font-bold ${sabahClass}">
+                        ${sabahIcon}
+                    </td>
+                `;
+            } else {
+                rowHtml += `<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">-</td>`;
+            }
+            
+            // Aksam column
+            if (att) {
+                const aksamClass = att.aksam ? 'text-green-600 bg-green-50' : 'text-red-600 bg-red-50';
+                const aksamIcon = att.aksam ? '✔' : '✘';
+                rowHtml += `
+                    <td class="px-5 py-5 border-b border-gray-200 text-sm text-center font-bold ${aksamClass}">
+                        ${aksamIcon}
                     </td>
                 `;
             } else {
