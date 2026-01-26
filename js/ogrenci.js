@@ -51,7 +51,7 @@ function renderStudents() {
         : students;
 
     if (filteredStudents.length === 0) {
-        studentList.innerHTML = '<tr><td colspan="6" class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">Hiç öğrenci bulunamadı.</td></tr>';
+        studentList.innerHTML = '<tr><td colspan="7" class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">Hiç öğrenci bulunamadı.</td></tr>';
         return;
     }
 
@@ -71,7 +71,10 @@ function renderStudents() {
                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">${student.sinif}</span>
             </td>
              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                <p class="text-gray-900 whitespace-no-wrap">${student.veliAdi || '-'}<br><span class="text-gray-500 text-xs">${student.veliTelefon || '-'}</span></p>
+                <p class="text-gray-900 whitespace-no-wrap">${student.veliAdi || '-'}</p>
+            </td>
+            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <p class="text-gray-900 whitespace-no-wrap">${student.veliTelefon || '-'}</p>
             </td>
             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                  <p class="text-gray-600 whitespace-no-wrap text-xs">${serviceName}</p>
