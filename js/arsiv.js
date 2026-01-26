@@ -53,7 +53,7 @@ function renderArchive() {
         const serviceName = service ? service.servisAdi : 'Bilinmeyen Servis';
 
         const total = item.kayitlar.length;
-        const present = item.kayitlar.filter(k => k.durum).length;
+        const present = item.kayitlar.filter(k => k.sabah || k.aksam).length;
 
         const row = document.createElement('tr');
         row.innerHTML = `

@@ -82,7 +82,7 @@ function renderList() {
         row.innerHTML = `
             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                 <p class="text-gray-900 whitespace-no-wrap font-semibold">${student.ad} ${student.soyad}</p>
-                <p class="text-xs text-gray-500">${student.skulNo || ''}</p>
+                <p class="text-xs text-gray-500">${student.okulNo || ''}</p>
             </td>
             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
                  <button onclick="toggleAttendance('${student.id}', 'sabah')" 
