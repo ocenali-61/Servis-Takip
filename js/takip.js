@@ -89,7 +89,7 @@ function renderList() {
             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                 <p class="text-gray-900 whitespace-no-wrap font-semibold">${student.sinif}</p>
             </td>
-            
+            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
                  <button onclick="toggleAttendance('${student.id}', 'sabah')" 
                     class="w-10 h-10 rounded-full font-bold text-lg focus:outline-none ${state.sabah ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}">
                     ${state.sabah ? '✔' : '✘'}

@@ -71,30 +71,60 @@ function renderArchive() {
     }
 
     // Update table headers with dates and time periods
-    const thead = document.querySelector('table thead tr');
+    const thead = document.querySelector('table thead');
+    
+    // Remove all rows except the first one (student info headers)
+    const allRows = thead.querySelectorAll('tr');
+    if (allRows.length > 1) {
+        for (let i = 1; i < allRows.length; i++) {
+            allRows[i].remove();
+        }
+    }
+    
+    const firstRow = thead.querySelector('tr');
     
     // Remove date headers if they exist
-    const dateHeaders = thead.querySelectorAll('th[data-date]');
+    const dateHeaders = firstRow.querySelectorAll('th[data-date]');
     dateHeaders.forEach(h => h.remove());
     
-    // Add date headers with Sabah and Aksam sub-headers
+    // Create second row for time periods (Sabah/Aksam)
+    const secondRow = document.createElement('tr');
+    
+    // Add empty cells for fixed columns
+    for (let i = 0; i < 3; i++) {
+        const td = document.createElement('th');
+        td.className = 'px-5 py-3 border-b-2 border-gray-200 bg-gray-100';
+        secondRow.appendChild(td);
+    }
+    
+    // Add date headers in first row and sub-headers in second row
     sortedDates.forEach(date => {
-        // Sabah header
+        // Date header in first row with colspan=2
+        const thDate = document.createElement('th');
+        thDate.setAttribute('data-date', date);
+        thDate.setAttribute('colspan', '2');
+        thDate.className = 'px-5 py-3 border-b border-gray-200 bg-purple-100 text-center text-xs font-semibold text-purple-700 uppercase tracking-wider';
+        thDate.textContent = date;
+        firstRow.appendChild(thDate);
+        
+        // Sabah sub-header in second row
         const thSabah = document.createElement('th');
         thSabah.setAttribute('data-date', date);
         thSabah.setAttribute('data-period', 'sabah');
-        thSabah.className = 'px-5 py-3 border-b-2 border-gray-200 bg-yellow-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider';
-        thSabah.innerHTML = `<div>${date}</div><div class="text-yellow-700">🌞 Sabah</div>`;
-        thead.appendChild(thSabah);
+        thSabah.className = 'px-5 py-3 border-b-2 border-gray-200 bg-yellow-100 text-center text-xs font-semibold text-yellow-700 uppercase tracking-wider';
+        thSabah.innerHTML = '🌞 Sabah';
+        secondRow.appendChild(thSabah);
         
-        // Aksam header
+        // Aksam sub-header in second row
         const thAksam = document.createElement('th');
         thAksam.setAttribute('data-date', date);
         thAksam.setAttribute('data-period', 'aksam');
-        thAksam.className = 'px-5 py-3 border-b-2 border-gray-200 bg-blue-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider';
-        thAksam.innerHTML = `<div>${date}</div><div class="text-blue-700">🌙 Akşam</div>`;
-        thead.appendChild(thAksam);
+        thAksam.className = 'px-5 py-3 border-b-2 border-gray-200 bg-blue-100 text-center text-xs font-semibold text-blue-700 uppercase tracking-wider';
+        thAksam.innerHTML = '🌙 Akşam';
+        secondRow.appendChild(thAksam);
     });
+    
+    thead.appendChild(secondRow);
 
     // Sort students by name
     const sortedStudentIds = Object.keys(studentAttendanceMap).sort((a, b) => {

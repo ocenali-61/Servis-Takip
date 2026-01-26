@@ -54,9 +54,14 @@
                 z-index: 5;
                 background-color: white;
             }
-            .archive-table thead {
+            .archive-table thead tr:first-child {
                 position: sticky;
                 top: 0;
+                z-index: 12;
+            }
+            .archive-table thead tr:last-child {
+                position: sticky;
+                top: 3.5rem;
                 z-index: 11;
             }
         </style>
@@ -69,10 +74,10 @@
                             class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider sticky left-0 z-10">
                             Öğrenci Adı</th>
                         <th
-                            class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider sticky left-24 z-10">
+                            class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider left-24 z-10">
                             Okul No</th>
                         <th
-                            class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider sticky left-40 z-10">
+                            class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider left-40 z-10">
                             Sınıf</th>
                         <!-- Date headers will be added dynamically by JS -->
                     </tr>
