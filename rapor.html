@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raporlar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <link rel="manifest" href="manifest.json">
+</head>
+
+<body class="bg-gray-100">
+    <nav class="bg-orange-600 p-4 text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="font-bold text-xl">🏠 Ana Sayfa</a>
+            <h1 class="text-lg">Raporlar & Dışa Aktar</h1>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-4">
+        <div class="bg-white p-4 rounded shadow mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Başlangıç Tarihi</label>
+                    <input type="date" id="startDate"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Bitiş Tarihi</label>
+                    <input type="date" id="endDate"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Servis</label>
+                    <select id="filterService"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <option value="">Tüm Servisler</option>
+                        <!-- Js Populate -->
+                    </select>
+                </div>
+            </div>
+            <div class="mt-4 text-right">
+                <button onclick="generateReport()"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Raporu Listele
+                </button>
+            </div>
+        </div>
+
+        <div id="reportPanel" class="hidden">
+            <div class="flex justify-end mb-4 space-x-2">
+                <button onclick="exportPDF()"
+                    class="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded flex items-center">
+                    📄 PDF İndir
+                </button>
+                <button onclick="exportExcel()"
+                    class="bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-4 rounded flex items-center">
+                    📊 Excel İndir
+                </button>
+            </div>
+
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <table class="min-w-full leading-normal" id="reportTable">
+                    <thead>
+                        <tr>
+                            <th
+                                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Tarih</th>
+                            <th
+                                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Servis</th>
+                            <th
+                                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Öğrenci</th>
+                            <th
+                                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Durum</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reportList">
+                        <!-- Javascript will populate this -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/export.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+
+</html>

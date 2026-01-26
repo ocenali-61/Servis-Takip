@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoklama / Takip</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #68D391;
+        }
+
+        .toggle-checkbox:checked+.toggle-label {
+            background-color: #68D391;
+        }
+    </style>
+    <link rel="manifest" href="manifest.json">
+</head>
+
+<body class="bg-gray-100">
+    <nav class="bg-purple-600 p-4 text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="font-bold text-xl">🏠 Ana Sayfa</a>
+            <h1 class="text-lg">Yoklama / Takip</h1>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-4">
+        <div class="bg-white p-4 rounded shadow mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Tarih</label>
+                    <input type="date" id="tarih"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Servis</label>
+                    <select id="servisSecimi"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <option value="">Servis Seçiniz</option>
+                        <!-- Js Populate -->
+                    </select>
+                </div>
+            </div>
+            <div class="mt-4 text-right">
+                <button onclick="loadList()"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Listeyi Getir
+                </button>
+            </div>
+        </div>
+
+        <div id="attendancePanel" class="hidden">
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="px-5 py-3 border-b-2 border-gray-200 bg-gray-50 flex justify-between items-center">
+                    <h2 class="text-lg font-semibold text-gray-700">Öğrenci Listesi</h2>
+                    <span id="statusMessage" class="text-sm font-bold text-orange-500"></span>
+                </div>
+                <table class="min-w-full leading-normal">
+                    <thead>
+                        <tr>
+                            <th
+                                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Öğrenci Adı</th>
+                            <th
+                                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Durum</th>
+                        </tr>
+                    </thead>
+                    <tbody id="attendanceList">
+                        <!-- Javascript will populate this -->
+                    </tbody>
+                </table>
+                <div class="p-4 bg-gray-50 text-right">
+                    <button onclick="saveAttendance()"
+                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                        Kaydet / Güncelle
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/takip.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+
+</html>
