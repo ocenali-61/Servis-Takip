@@ -100,7 +100,9 @@ function renderArchive() {
     // Add date headers in first row and sub-headers in second row
     sortedDates.forEach((date, index) => {
         // Determine border style - thick border between dates
-        const borderStyle = index > 0 ? 'border-l-4 border-gray-400' : '';
+        const borderLeftStyle = index > 0 ? 'border-l-8 border-gray-500' : '';
+        const borderRightStyle = 'border-r-4 border-gray-400';
+        const borderStyle = `${borderLeftStyle} ${borderRightStyle}`;
         
         // Date header in first row with colspan=2
         const thDate = document.createElement('th');
