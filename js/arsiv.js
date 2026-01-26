@@ -100,8 +100,8 @@ function renderArchive() {
     // Add date headers in first row and sub-headers in second row
     sortedDates.forEach((date, index) => {
         // Determine border style - thick border between dates
-        const borderLeftStyle = index > 0 ? 'border-l-8 border-gray-500' : '';
-        const borderRightStyle = 'border-r-4 border-gray-400';
+        const borderLeftStyle = index > 0 ? 'border-l-2 border-gray-500' : '';
+        const borderRightStyle = 'border-r-2 border-gray-400';
         const borderStyle = `${borderLeftStyle} ${borderRightStyle}`;
         
         // Date header in first row with colspan=2
@@ -130,6 +130,7 @@ function renderArchive() {
         thAksam.setAttribute('data-date', date);
         thAksam.setAttribute('data-period', 'aksam');
         thAksam.className = `px-5 py-3 border-b-2 border-gray-200 bg-blue-100 text-center text-lg font-semibold text-blue-700 ${borderStyle}`;
+        thAksam.style.borderRight = '2px solid #9CA3AF';
         thAksam.innerHTML = '🌙';
         secondRow.appendChild(thAksam);
     });
