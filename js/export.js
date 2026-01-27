@@ -62,8 +62,8 @@ function generateReport() {
                     tarih: record.tarih,
                     servis: serviceName,
                     ogrenci: `${student.ad} ${student.soyad}`,
-                    sabah: k.sabah ? 'GELDİ' : 'GELMEDİ',
-                    aksam: k.aksam ? 'GELDİ' : 'GELMEDİ'
+                    sabah: k.sabah ? '+' : '-',
+                    aksam: k.aksam ? '+' : '-'
                 });
             }
         });
@@ -90,8 +90,8 @@ function renderTable() {
 
     currentReportData.forEach(row => {
         const tr = document.createElement('tr');
-        const sabahClass = row.sabah === 'GELDİ' ? 'text-green-600' : 'text-red-600';
-        const aksamClass = row.aksam === 'GELDİ' ? 'text-green-600' : 'text-red-600';
+        const sabahClass = row.sabah === '+' ? 'text-green-600' : 'text-red-600';
+        const aksamClass = row.aksam === '+' ? 'text-green-600' : 'text-red-600';
         tr.innerHTML = `
             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">${row.tarih}</td>
             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">${row.servis}</td>
