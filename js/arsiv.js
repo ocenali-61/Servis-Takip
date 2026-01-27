@@ -100,7 +100,7 @@ function renderArchive() {
     // Add date headers in first row and sub-headers in second row
     sortedDates.forEach((date, index) => {
         // Determine border style - thick border between dates
-        const borderLeftStyle = index > 0 ? 'border-l-2 border-gray-500' : '';
+        const borderLeftStyle = index > 0 ? 'border-right: 2px solid black' : '';
         
         // Date header in first row with colspan=2
         const thDate = document.createElement('th');
@@ -155,10 +155,10 @@ function renderArchive() {
             <td class="px-2 py-2 border-b border-gray-200 bg-white text-sm sticky left-0 z-5">
                 <p class="text-gray-900 font-semibold">${student.ad} ${student.soyad}</p>
             </td>
-            <td class="px-2 py-2 border-b border-gray-200 bg-white text-sm sticky left-24 z-5">
+            <td class="px-2 py-2 border-b border-gray-200 bg-white text-sm left-24 z-5">
                 <p class="text-gray-900">${student.okulNo || '-'}</p>
             </td>
-            <td class="px-2 py-2 border-b border-gray-200 bg-white text-sm sticky left-40 z-5">
+            <td class="px-2 py-2 border-b border-gray-200 bg-white text-sm left-40 z-5">
                 <span class="inline-block bg-blue-100 rounded px-2 py-1 text-xs font-semibold text-blue-900">${student.sinif}</span>
             </td>
         `;
