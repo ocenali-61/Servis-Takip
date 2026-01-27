@@ -101,7 +101,7 @@ function renderArchive() {
     sortedDates.forEach((date, index) => {
         // Determine border style - thick border between dates
         const borderLeftStyle = index > 0 ? 'border-l-2 border-gray-500' : '';
-        const borderRightStyle = 'border-r-2 border-gray-400';
+        const borderRightStyle = 'border-r-2 border-black';
         const borderStyle = `${borderLeftStyle} ${borderRightStyle}`;
         
         // Date header in first row with colspan=2
@@ -121,7 +121,7 @@ function renderArchive() {
         const thSabah = document.createElement('th');
         thSabah.setAttribute('data-date', date);
         thSabah.setAttribute('data-period', 'sabah');
-        thSabah.className = `px-2 py-2  border-1 border-gray-200 bg-yellow-100 text-center text-lg font-semibold text-yellow-700 ${borderStyle}`;
+        thSabah.className = `px-2 py-2  border-r-1 border-gray-200 bg-yellow-100 text-center text-lg font-semibold text-yellow-700 ${borderStyle}`;
         thSabah.innerHTML = 'S';
         secondRow.appendChild(thSabah);
         
@@ -172,12 +172,12 @@ function renderArchive() {
                 const sabahClass = att.sabah ? 'text-green-600 bg-green-50' : 'text-red-600 bg-red-50';
                 const sabahIcon = att.sabah ? '✔' : '✘';
                 rowHtml += `
-                    <td class="px-2 py-2 border-1 border-gray-200 text-sm text-center font-bold ${sabahClass}">
+                    <td class="px-2 py-2 border-r-1 border-gray-200 text-sm text-center font-bold ${sabahClass}">
                         ${sabahIcon}
                     </td>
                 `;
             } else {
-                rowHtml += `<td class="px-2 py-2 border-1 border-gray-200 bg-white text-sm text-center">-</td>`;
+                rowHtml += `<td class="px-2 py-2 border-r-1 border-gray-200 bg-white text-sm text-center">-</td>`;
             }
             
             // Aksam column
