@@ -108,7 +108,7 @@ function renderArchive() {
         const thDate = document.createElement('th');
         thDate.setAttribute('data-date', date);
         thDate.setAttribute('colspan', '2');
-        thDate.className = `px-2 py-2 border-2 border-black-200 border-r-black-500 bg-purple-100 text-center text-xs font-semibold text-purple-700 uppercase tracking-wider ${borderStyle}`;
+        thDate.className = `px-2 py-2 border-r-2 border-black bg-purple-100 text-center text-xs font-semibold text-purple-700 uppercase tracking-wider ${borderStyle}`;
         thDate.style.writingMode = 'vertical-rl';
         thDate.style.transform = 'rotate(180deg)';
         thDate.style.height = '120px';
@@ -121,7 +121,7 @@ function renderArchive() {
         const thSabah = document.createElement('th');
         thSabah.setAttribute('data-date', date);
         thSabah.setAttribute('data-period', 'sabah');
-        thSabah.className = `px-2 py-2 border-1 border-black-200 bg-yellow-100 text-center text-lg font-semibold text-yellow-700 ${borderStyle}`;
+        thSabah.className = `px-2 py-2  border-1 border-gray-200 bg-yellow-100 text-center text-lg font-semibold text-yellow-700 ${borderStyle}`;
         thSabah.innerHTML = 'S';
         secondRow.appendChild(thSabah);
         
@@ -129,7 +129,7 @@ function renderArchive() {
         const thAksam = document.createElement('th');
         thAksam.setAttribute('data-date', date);
         thAksam.setAttribute('data-period', 'aksam');
-        thAksam.className = `px-2 py-2 border-2 border-black-200 border-r-black-500 bg-blue-100 text-center text-lg font-semibold text-blue-700 ${borderStyle}`;
+        thAksam.className = `px-2 py-2 border-r-2 border-black bg-blue-100 text-center text-lg font-semibold text-blue-700 ${borderStyle}`;
         thAksam.innerHTML = 'A';
         secondRow.appendChild(thAksam);
     });
@@ -172,12 +172,12 @@ function renderArchive() {
                 const sabahClass = att.sabah ? 'text-green-600 bg-green-50' : 'text-red-600 bg-red-50';
                 const sabahIcon = att.sabah ? '✔' : '✘';
                 rowHtml += `
-                    <td class="px-2 py-2 border-b-1 border-gray-200 text-sm text-center font-bold ${sabahClass}">
+                    <td class="px-2 py-2 border-1 border-gray-200 text-sm text-center font-bold ${sabahClass}">
                         ${sabahIcon}
                     </td>
                 `;
             } else {
-                rowHtml += `<td class="px-2 py-2 border-b border-gray-200 bg-white text-sm text-center">-</td>`;
+                rowHtml += `<td class="px-2 py-2 border-1 border-gray-200 bg-white text-sm text-center">-</td>`;
             }
             
             // Aksam column
@@ -185,12 +185,12 @@ function renderArchive() {
                 const aksamClass = att.aksam ? 'text-green-600 bg-green-50' : 'text-red-600 bg-red-50';
                 const aksamIcon = att.aksam ? '✔' : '✘';
                 rowHtml += `
-                    <td class="px-2 py-2 border-2 border-black-200 border-r-black-500 text-sm text-center font-bold ${aksamClass}">
+                    <td class="px-2 py-2 border-r-2 border-black text-sm text-center font-bold ${aksamClass}">
                         ${aksamIcon}
                     </td>
                 `;
             } else {
-                rowHtml += `<td class="px-2 py-2 border-2 border-black-200 border-r-black-500 bg-white text-sm text-center">-</td>`;
+                rowHtml += `<td class="px-2 py-2 border-r-2 border-black bg-white text-sm text-center">-</td>`;
             }
         });
 
