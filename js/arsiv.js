@@ -121,7 +121,7 @@ function renderArchive() {
         const thSabah = document.createElement('th');
         thSabah.setAttribute('data-date', date);
         thSabah.setAttribute('data-period', 'sabah');
-        thSabah.className = `px-2 py-2  border-r-1 border-gray-200 bg-yellow-100 text-center text-lg font-semibold text-yellow-700 ${borderStyle}`;
+        thSabah.className = `px-2 py-2  bg-yellow-100 text-center text-lg font-semibold text-yellow-700 ${borderStyle}`;
         thSabah.innerHTML = 'S';
         secondRow.appendChild(thSabah);
         
