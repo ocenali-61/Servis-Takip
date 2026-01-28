@@ -80,7 +80,7 @@ function renderStudents() {
                  <p class="text-gray-600 whitespace-no-wrap text-xs">${serviceName}</p>
             </td>
             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
-                <button onclick="editStudent('${student.id}')" class="text-blue-600 hover:text-blue-900 mr-2">Düzenle</button>
+                <button onclick="openModal('${student.id}')" class="text-blue-600 hover:text-blue-900 mr-2">Düzenle</button>
                 <button onclick="deleteStudent('${student.id}')" class="text-red-600 hover:text-red-900">Sil</button>
             </td>
         `;

@@ -51,7 +51,7 @@ function renderServices() {
                  <p class="text-gray-900 whitespace-no-wrap">${service.konum || '-'}</p>
             </td>
             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
-                <button onclick="editService('${service.id}')" class="text-blue-600 hover:text-blue-900 mr-2">Düzenle</button>
+                <button onclick="openModal('${service.id}')" class="text-blue-600 hover:text-blue-900 mr-2">Düzenle</button>
                 <button onclick="deleteService('${service.id}')" class="text-red-600 hover:text-red-900">Sil</button>
             </td>
         `;
