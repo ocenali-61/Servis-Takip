@@ -37,6 +37,17 @@ function loadServiceDropdowns() {
 }
 
 /**
+ * Toggles the visibility of the detail row.
+ * @param {string} id - The ID of the row to toggle.
+ */
+function toggleDetail(id) {
+    const detailRow = document.getElementById(`detail-${id}`);
+    if (detailRow) {
+        detailRow.classList.toggle('hidden');
+    }
+}
+
+/**
  * Renders the list of students.
  */
 function renderStudents() {
@@ -51,7 +62,7 @@ function renderStudents() {
         : students;
 
     if (filteredStudents.length === 0) {
-        studentList.innerHTML = '<tr><td colspan="6" class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">Hiç öğrenci bulunamadı.</td></tr>';
+        studentList.innerHTML = '<tr><td colspan="7" class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">Hiç öğrenci bulunamadı.</td></tr>';
         return;
     }
 
@@ -59,10 +70,14 @@ function renderStudents() {
         const service = services.find(s => s.id === student.servisId);
         const serviceName = service ? `${service.servisAdi} (${service.plaka})` : '<span class="text-red-500">Servis Silinmiş</span>';
 
+        // Main Row
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td class="px-2 py-2 md:px-5 md:py-5 border-b border-gray-200 bg-white text-xs md:text-sm">
-                <p class="text-gray-900 whitespace-no-wrap font-semibold">${student.ad} ${student.soyad}</p>
+            <td onclick="toggleDetail('${student.id}')" class="px-2 py-2 md:px-5 md:py-5 border-b border-gray-200 bg-white text-xs md:text-sm cursor-pointer hover:bg-gray-50 text-blue-600 font-bold">
+                 <div class="flex items-center">
+                    <span>${student.ad} ${student.soyad}</span>
+                    <span class="ml-2 text-xs text-gray-400">▼</span>
+                </div>
             </td>
             <td class="hidden md:table-cell px-5 py-5 border-b border-gray-200 bg-white text-sm">
                 <p class="text-gray-900 whitespace-no-wrap">${student.okulNo || '-'}</p>
@@ -85,6 +100,22 @@ function renderStudents() {
             </td>
         `;
         studentList.appendChild(row);
+
+        // Detail Row
+        const detailRow = document.createElement('tr');
+        detailRow.id = `detail-${student.id}`;
+        detailRow.className = 'hidden bg-gray-50 transition-all duration-300 ease-in-out';
+        detailRow.innerHTML = `
+            <td colspan="7" class="px-5 py-3 border-b border-gray-200">
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <p><strong>🎓 Okul No:</strong> ${student.okulNo || '-'}</p>
+                    <p><strong>👤 Veli:</strong> ${student.veliAdi || '-'}</p>
+                    <p><strong>📞 Veli Tel:</strong> <a href="tel:${student.veliTelefon}" class="text-blue-500 underline">${student.veliTelefon || '-'}</a></p>
+                    <p><strong>🚌 Servis:</strong> ${serviceName}</p>
+                </div>
+            </td>
+        `;
+        studentList.appendChild(detailRow);
     });
 }
 
