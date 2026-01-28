@@ -32,27 +32,27 @@ function renderServices() {
     services.forEach(service => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            <td class="px-2 py-2 md:px-5 md:py-5 border-b border-gray-200 bg-white text-xs md:text-sm">
                 <p class="text-gray-900 whitespace-no-wrap font-semibold">${service.servisAdi}</p>
             </td>
-            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            <td class="px-2 py-2 md:px-5 md:py-5 border-b border-gray-200 bg-white text-xs md:text-sm">
                 <span class="relative inline-block px-3 py-1 font-semibold text-gray-900 leading-tight">
                     <span aria-hidden class="absolute inset-0 bg-gray-200 opacity-50 rounded-full"></span>
-                    <span class="relative">${service.plaka}</span>
+                    <span class="relative text-xs md:text-sm">${service.plaka}</span>
                 </span>
             </td>
-            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            <td class="px-2 py-2 md:px-5 md:py-5 border-b border-gray-200 bg-white text-xs md:text-sm">
                  <p class="text-gray-900 whitespace-no-wrap">${service.soforAdi}</p>
             </td>
-            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            <td class="hidden md:table-cell px-5 py-5 border-b border-gray-200 bg-white text-sm">
                  <p class="text-gray-900 whitespace-no-wrap">${service.telefon || '-'}</p>
             </td>
-            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            <td class="hidden md:table-cell px-5 py-5 border-b border-gray-200 bg-white text-sm">
                  <p class="text-gray-900 whitespace-no-wrap">${service.konum || '-'}</p>
             </td>
-            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
-                <button onclick="openModal('${service.id}')" class="text-blue-600 hover:text-blue-900 mr-2">Düzenle</button>
-                <button onclick="deleteService('${service.id}')" class="text-red-600 hover:text-red-900">Sil</button>
+            <td class="px-2 py-2 md:px-5 md:py-5 border-b border-gray-200 bg-white text-xs md:text-sm text-right">
+                <button onclick="openModal('${service.id}')" class="text-blue-600 hover:text-blue-900 mr-2" title="Düzenle">✏️</button>
+                <button onclick="deleteService('${service.id}')" class="text-red-600 hover:text-red-900" title="Sil">🗑️</button>
             </td>
         `;
         serviceList.appendChild(row);

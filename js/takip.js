@@ -80,24 +80,24 @@ function renderList() {
 
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            <td class="px-2 py-2 md:px-5 md:py-5 border-b border-gray-200 bg-white text-xs md:text-sm">
                 <p class="text-gray-900 whitespace-no-wrap font-semibold">${student.ad} ${student.soyad}</p>
             </td>
-            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            <td class="px-2 py-2 md:px-5 md:py-5 border-b border-gray-200 bg-white text-xs md:text-sm">
                 <p class="text-gray-900 whitespace-no-wrap font-semibold">${student.okulNo}</p>
             </td>
-            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            <td class="px-2 py-2 md:px-5 md:py-5 border-b border-gray-200 bg-white text-xs md:text-sm">
                 <p class="text-gray-900 whitespace-no-wrap font-semibold">${student.sinif}</p>
             </td>
-            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
+            <td class="px-2 py-2 md:px-5 md:py-5 border-b border-gray-200 bg-white text-xs md:text-sm text-center">
                  <button onclick="toggleAttendance('${student.id}', 'sabah')" 
-                    class="w-10 h-10 rounded-full font-bold text-lg focus:outline-none ${state.sabah ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}">
+                    class="w-8 h-8 md:w-10 md:h-10 rounded-full font-bold text-sm md:text-lg focus:outline-none ${state.sabah ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}">
                     ${state.sabah ? '✔' : '✘'}
                  </button>
             </td>
-            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
+            <td class="px-2 py-2 md:px-5 md:py-5 border-b border-gray-200 bg-white text-xs md:text-sm text-center">
                  <button onclick="toggleAttendance('${student.id}', 'aksam')" 
-                    class="w-10 h-10 rounded-full font-bold text-lg focus:outline-none ${state.aksam ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}">
+                    class="w-8 h-8 md:w-10 md:h-10 rounded-full font-bold text-sm md:text-lg focus:outline-none ${state.aksam ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}">
                     ${state.aksam ? '✔' : '✘'}
                  </button>
             </td>
