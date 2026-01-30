@@ -206,7 +206,10 @@ function renderTable() {
 }
 
 function exportPDF() {
-    if (Object.keys(currentStudentMap).length === 0) return;
+    if (Object.keys(currentStudentMap).length === 0) {
+        alert('Dışa aktarılacak veri bulunamadı. Lütfen önce raporu listeleyin.');
+        return;
+    }
 
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({ orientation: 'landscape' });
@@ -336,7 +339,10 @@ function exportPDF() {
 }
 
 function exportExcel() {
-    if (Object.keys(currentStudentMap).length === 0) return;
+    if (Object.keys(currentStudentMap).length === 0) {
+        alert('Dışa aktarılacak veri bulunamadı. Lütfen önce raporu listeleyin.');
+        return;
+    }
 
     // We will build a worksheet with styles.
     // Since we are using xlsx-js (SheetJS), Community Edition doesn't support styles (colors, rotation) in 'write'.

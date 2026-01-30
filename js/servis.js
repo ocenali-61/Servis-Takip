@@ -131,11 +131,13 @@ serviceForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const id = serviceIdInput.value;
     const services = Storage.getData('services') || [];
+    const plaka = plakaInput.value.trim();
 
+    // Use plaka as ID for new services
     const newService = {
-        id: id || Storage.generateId('srv'),
+        id: id || plaka,
         servisAdi: servisAdiInput.value,
-        plaka: plakaInput.value,
+        plaka: plaka,
         soforAdi: soforAdiInput.value,
         telefon: telefonInput.value,
         konum: konumInput.value
@@ -168,6 +170,138 @@ function deleteService(id) {
         Storage.setData('services', services);
         renderServices();
     }
+}
+
+/**
+ * Exports services to an Excel file.
+ */
+function exportServicesToExcel() {
+    const services = Storage.getData('services') || [];
+
+    if (services.length === 0) {
+        alert('Dışa aktarılacak servis bulunamadı.');
+        return;
+    }
+
+    // Prepare data with Turkish headers
+    const exportData = services.map(service => {
+        return {
+            'Servis Adı': service.servisAdi,
+            'Plaka': service.plaka,
+            'Şoför Adı': service.soforAdi,
+            'Telefon': service.telefon || '',
+            'Konum': service.konum || '',
+            'Servis ID': service.id
+        };
+    });
+
+    // Create workbook and worksheet
+    const ws = XLSX.utils.json_to_sheet(exportData);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Servisler');
+
+    // Auto-fit column widths
+    const colWidths = [
+        { wch: 20 }, // Servis Adı
+        { wch: 12 }, // Plaka
+        { wch: 20 }, // Şoför Adı
+        { wch: 15 }, // Telefon
+        { wch: 25 }, // Konum
+        { wch: 15 }  // Servis ID
+    ];
+    ws['!cols'] = colWidths;
+
+    // Generate filename with date
+    const today = new Date();
+    const dateStr = today.toISOString().split('T')[0];
+    const filename = `Servisler_${dateStr}.xlsx`;
+
+    // Save file
+    XLSX.writeFile(wb, filename);
+}
+
+/**
+ * Imports services from an Excel file.
+ * @param {Event} event - The file input change event.
+ */
+function importServicesFromExcel(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        try {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+
+            // Get first sheet
+            const sheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[sheetName];
+
+            // Convert to JSON
+            const jsonData = XLSX.utils.sheet_to_json(worksheet);
+
+            if (jsonData.length === 0) {
+                alert('Excel dosyasında veri bulunamadı.');
+                return;
+            }
+
+            // Get existing data
+            const services = Storage.getData('services') || [];
+
+            let importedCount = 0;
+            let skippedCount = 0;
+
+            jsonData.forEach(row => {
+                // Support both Turkish and English column names
+                const servisAdi = row['Servis Adı'] || row['ServisAdi'] || row['servisAdi'] || '';
+                const plaka = row['Plaka'] || row['plaka'] || '';
+                const soforAdi = row['Şoför Adı'] || row['SoforAdi'] || row['soforAdi'] || '';
+                const telefon = row['Telefon'] || row['telefon'] || '';
+                const konum = row['Konum'] || row['konum'] || '';
+
+                // Validate required fields
+                if (!servisAdi || !plaka || !soforAdi) {
+                    skippedCount++;
+                    return;
+                }
+
+                // Create new service (use plaka as ID)
+                const plakaValue = plaka.toString().trim();
+                const newService = {
+                    id: plakaValue,
+                    servisAdi: servisAdi.toString().trim(),
+                    plaka: plakaValue,
+                    soforAdi: soforAdi.toString().trim(),
+                    telefon: telefon.toString().trim(),
+                    konum: konum.toString().trim()
+                };
+
+                services.push(newService);
+                importedCount++;
+            });
+
+            // Save updated services
+            Storage.setData('services', services);
+            renderServices();
+
+            // Show result
+            let message = `${importedCount} servis başarıyla içe aktarıldı.`;
+            if (skippedCount > 0) {
+                message += `\n${skippedCount} satır eksik bilgi nedeniyle atlandı.`;
+            }
+            alert(message);
+
+        } catch (error) {
+            console.error('Excel import error:', error);
+            alert('Excel dosyası okunurken bir hata oluştu. Lütfen dosya formatını kontrol edin.');
+        }
+    };
+
+    reader.readAsArrayBuffer(file);
+
+    // Reset file input
+    event.target.value = '';
 }
 
 // Initial render
