@@ -10,7 +10,7 @@ const serviceForm = document.getElementById('serviceForm');
 const modalTitle = document.getElementById('modalTitle');
 
 // Inputs
-const serviceIdInput = document.getElementById('plaka');
+const serviceIdInput = document.getElementById('serviceId');
 const servisAdiInput = document.getElementById('servisAdi');
 const plakaInput = document.getElementById('plaka');
 const soforAdiInput = document.getElementById('soforAdi');
@@ -133,9 +133,9 @@ serviceForm.addEventListener('submit', (e) => {
     const services = Storage.getData('services') || [];
     const plaka = plakaInput.value.trim();
 
-    // Use plaka as ID for new services
+    // Always use plaka as ID
     const newService = {
-        id: id || plaka,
+        id: plaka,
         servisAdi: servisAdiInput.value,
         plaka: plaka,
         soforAdi: soforAdiInput.value,
