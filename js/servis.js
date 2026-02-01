@@ -10,7 +10,7 @@ const serviceForm = document.getElementById('serviceForm');
 const modalTitle = document.getElementById('modalTitle');
 
 // Inputs
-const serviceIdInput = document.getElementById('serviceId');
+const serviceIdInput = document.getElementById('plaka');
 const servisAdiInput = document.getElementById('servisAdi');
 const plakaInput = document.getElementById('plaka');
 const soforAdiInput = document.getElementById('soforAdi');
